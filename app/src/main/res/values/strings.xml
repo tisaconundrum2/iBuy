@@ -1,8 +1,18 @@
 <resources>
-    <string name="app_name">sideWindow</string>
+    <string name="app_name">iBuy</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_text">Ibuy</string>
+    <string name="hint_item">What do you want to buy?</string>
+    <string name="hint_cost">Cost</string>
+    <string name="submit_text">Submit</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="share_title">share</string>
+    <string name="item_total_text">Total Cost</string>
+    <string name="cost_text">$</string>
+    <string name="items_num">Items:</string>
+
 </resources>
