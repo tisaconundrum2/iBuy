@@ -21,13 +21,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private DatabaseHandler dba;
-    private ArrayList<Item> dbItems = new ArrayList<>();
-    private CustomListviewAdapter ItemAdapter;
-    private ListView listView;
-
-    private Item myItem;
-    private TextView totalCost, totalItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,65 +45,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-//        ==========================
-
-        setContentView(R.layout.list_of_items);
-
-        listView = (ListView) findViewById(R.id.list);
-        totalCost = (TextView) findViewById(R.id.totalAmountTextView);
-        totalItems = (TextView) findViewById(R.id.totalItemsTextView);
-        listView.setDivider(null);
-        refreshData();
-
     }
 
-    private void refreshData() {
-        dbItems.clear();
-
-        dba = new DatabaseHandler(getApplicationContext());
-
-        ArrayList<Item> foodsFromDB = dba.getFoods();
-
-        int CostValue = dba.totalCost();
-        int total_Item = dba.getTotalItems();
-
-        String formattedValue = Utils.formatNumber(CostValue);
-        String formattedItems = Utils.formatNumber(total_Item);
-
-        totalCost.setText("Total Cost: " + formattedValue);
-        totalItems.setText("Total Items: " + formattedItems);
-
-        for (int i = 0; i < foodsFromDB.size(); i++) {
-
-            String name = foodsFromDB.get(i).getItemName();
-            String dateText = foodsFromDB.get(i).getDate();
-            int cals = foodsFromDB.get(i).getCost();
-            int itemId = foodsFromDB.get(i).getItemID();
-
-            Log.v("FOOD IDS: ", String.valueOf(itemId));
-
-
-            myItem = new Item();
-            myItem.setItemName(name);
-            myItem.setDate(dateText);
-            myItem.setCost(cals);
-
-            myItem.setItemID(itemId);
-
-            dbItems.add(myItem);
-
-
-        }
-        dba.close();
-
-        //setup adapter
-        ItemAdapter = new CustomListviewAdapter(MainActivity.this, R.layout.list_row, dbItems);
-        listView.setAdapter(ItemAdapter);
-        ItemAdapter.notifyDataSetChanged();
-
-
-    }
 
 
     @Override

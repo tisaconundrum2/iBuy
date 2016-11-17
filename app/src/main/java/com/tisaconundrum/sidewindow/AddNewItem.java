@@ -63,7 +63,7 @@ public class AddNewItem extends AppCompatActivity {
             itemCost.setText("");
 
             //take users to next screen (display all entered items)
-            startActivity(new Intent(AddNewItem.this, MainActivity.class));
+            startActivity(new Intent(AddNewItem.this, DisplayItemActivity.class));
         }
 
     }
